@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Join Chat</title>
+        <link rel="icon" type="image/png" href="/images/favicon-chat.png">
+        <link rel="stylesheet" type="text/css" href="/css/join.css">
+    </head>
+    <body>
+        <h1>Welcome to Chat Room</h1>
+        <h2>By AshGaur</h2>
+        <div id="formdiv">
+        </div>
+        <script id="form-template" type="text/html">
+            <form>
+                <input type="text" placeholder="Username" required name="username" autocomplete="off">
+                <input type="text" placeholder="Room" required name="room" id="room" autocomplete="off">
+                <select id="selroom" onchange="linkval()">
+                    <option value="select">Existing Rooms</option>
+                    {{#rooms}}
+                    <option value="{{room}}">{{room}}</option>
+                    {{/rooms}}
+                </select>
+                <input type="submit" value="Join">
+            </form>
+        </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+        <script src="/js/join.js"></script>
+        <script>
+            function linkval(){
+                const $room = document.getElementById('room')
+                const $select = document.getElementById('selroom')    
+                if($select.value==='select'){
+                    return $room.value=''
+                 }
+                $room.value=$select.value
+            }
+        </script>
+    </body>
+</html>

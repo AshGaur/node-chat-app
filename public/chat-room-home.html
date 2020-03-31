@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Chat-Room</title>
+        <link rel="icon" type="image/png" href="/images/favicon-chat.png">
+        <link rel="stylesheet" type="text/css" href="/css/chat-room.css">
+    </head>
+    <body>
+        <div id="sidebar">
+        </div>
+        <div id="wrapper">
+            <div id="messages">
+            </div>
+            <form>
+                <input type="text" placeholder="Your Message Here...." required autocomplete="off" id="mymsg">
+                <input type="submit" value="Send" id="sendmsg">
+            </form>
+            <button id="sendloc">Send Location</button>
+        </div>
+
+        <!--template setting-->
+        <script id="message-template" type="text/html">
+        <div class="msgs" style="background-color:{{color}};">
+                <span class="uname">{{username}}</span><span class="timestamp">{{createdAt}}</span>
+                <p class="text">{{text}}</p>
+            </div>
+        </script>
+        <script id="location-template" type="text/html">
+            <div class="msgs" style="background-color:{{color}};">
+                <span class="uname">{{username}}</span><span class="timestamp">{{createdAt}}</span>
+                <a class="text" href="{{url}}" target="_blank">My Location</a>
+            </div>
+        </script>
+        <script id="sidebar-template" type="text/html">
+            <p id="room">Chatroom: <span style="font-weight:bolder;">{{room}}</span></p>
+            <p id="sidehead">Online:</p>
+            <ul>
+                {{#users}}
+                <li>{{username}}</li>
+                {{/users}}
+            </ul>
+        </script>
+        <!-- --------------------------- -->
+
+        <!--Libraries-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/client-side.js"></script>
+    </body>
+</html>
