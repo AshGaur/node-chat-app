@@ -16,12 +16,12 @@ app.use(express.static(publicdirpath))
 const color = ['aquamarine','blanchedalmond','darkseagreen','coral','cyan']
 var i=0
 io.on('connection',(socket)=>{
-
     socket.emit('rooms',{
         rooms:getRooms()
     })
     
     socket.on('join',({username,room},callback)=>{
+        
         const {error} = addUser({
             id:socket.id,
             username,

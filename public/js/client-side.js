@@ -85,7 +85,9 @@ $form.addEventListener('submit',(e)=>{
 
 $sendloc.addEventListener('click',()=>{
     $sendloc.setAttribute('disabled','disabled')
+    var flag=true
     navigator.geolocation.getCurrentPosition((position)=>{
+       flag=false 
         socket.emit('sendLocation',{
             latitude:position.coords.latitude,
             longitude:position.coords.longitude
@@ -94,4 +96,10 @@ $sendloc.addEventListener('click',()=>{
             console.log(status)
         })
     })
+    setTimeout(()=>{
+        if(flag){
+            $sendloc.removeAttribute('disabled')
+            return console.log('Location permissions Denied !')
+        }
+    },5000)
 })
